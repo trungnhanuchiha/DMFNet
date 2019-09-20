@@ -6,8 +6,8 @@ import os
 from sklearn.model_selection import StratifiedKFold
 import numpy as np
 
-root = '/data2/liuxiaopeng/Data/BraTS2018/Train'
-valid_data_dir = '/data2/liuxiaopeng/Data/BraTS2018/Valid'
+root = '/data2/BRATS2018_preprocessed_main/Train'
+valid_data_dir = '/data2/BraTS2018/Valid'
 
 def write(data, fname, root=root):
     fname = os.path.join(root, fname)
@@ -37,7 +37,8 @@ for k, (train_index, valid_index) in enumerate(skf.split(Y, Y)):
     write(valid_list, 'valid_{}.txt'.format(k))
 
 
-valid = os.listdir(os.path.join(valid_data_dir))
-valid = [f for f in valid if not (f.endswith('.csv') or f.endswith('.txt'))]
-write(valid, 'valid.txt', root=valid_data_dir)
+# Tao index cho data validation (chua dung)
+# valid = os.listdir(os.path.join(valid_data_dir))
+# valid = [f for f in valid if not (f.endswith('.csv') or f.endswith('.txt'))]
+# write(valid, 'valid.txt', root=valid_data_dir)
 

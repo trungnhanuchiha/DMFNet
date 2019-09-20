@@ -14,19 +14,19 @@ modalities = ('flair', 't1ce', 't1', 't2')
 
 
 train_set = {
-        'root': '/data2/liuxiaopeng/Data/BraTS2018/Train',
+        'root': '/data2/BRATS2018_preprocessed_main/Train',
         'flist': 'all.txt',
         'has_label': True
         }
 
 valid_set = {
-        'root': '/data2/liuxiaopeng/Data/BraTS2018/Valid',
+        'root': '/data2/BraTS2018/Valid',
         'flist': 'valid.txt',
         'has_label': False
         }
 
 test_set = {
-        'root': '/data2/liuxiaopeng/Data/BraTS2018/Test',
+        'root': '/data2/BraTS2018/Test',
         'flist': 'test.txt',
         'has_label': False
         }
@@ -100,7 +100,7 @@ def doit(dset):
 
 
 doit(train_set)
-doit(valid_set)
+# doit(valid_set)
 # doit(test_set)
 
 

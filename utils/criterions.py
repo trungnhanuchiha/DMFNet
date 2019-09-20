@@ -35,6 +35,7 @@ def dice(output, target,eps =1e-5): # soft dice loss
     # num = 2*(output*target).sum() + eps
     num = 2*(output*target).sum()
     den = output.sum() + target.sum() + eps
+    # Lay 1 - dice !
     return 1.0 - num/den
 
 def sigmoid_dice_loss(output, target,alpha=1e-5):
@@ -55,6 +56,7 @@ def softmax_dice_loss(output, target,eps=1e-5): #
     loss3 = dice(output[:,3,...],(target==4).float())
     logging.info('1:{:.4f} | 2:{:.4f} | 4:{:.4f}'.format(1-loss1.data, 1-loss2.data, 1-loss3.data))
 
+    # Khong lay trung binh ma lay tong cho 3 class > 0
     return loss1+loss2+loss3
 
 
@@ -73,6 +75,7 @@ def GeneralizedDiceLoss(output,target,eps=1e-5,weight_type='square'): # Generali
     output = flatten(output)[1:,...] # transpose [N,4，H,W,D] -> [4，N,H,W,D] -> [3, N*H*W*D] voxels
     target = flatten(target)[1:,...] # [class, N*H*W*D]
 
+    # target_sum: dem so luong voxel ung voi tung class trong label => shape: [class, 1]
     target_sum = target.sum(-1) # sub_class_voxels [3,1] -> 3个voxels
     if weight_type == 'square':
         class_weights = 1. / (target_sum * target_sum + eps)
