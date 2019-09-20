@@ -220,6 +220,9 @@ class RandCrop3D(CenterCrop):
             size = list(self.size)
         else:
             size = self.size
+
+        print('size: {}'.format(size))
+        print('shape: {}'.format(shape))
         start = [random.randint(0, s-i) for i,s in zip(size,shape)]
         self.buffer = [slice(None)] + [slice(s, s+k) for s,k in zip(start,size)]
         return size
