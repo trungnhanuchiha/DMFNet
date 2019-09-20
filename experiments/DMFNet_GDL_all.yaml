@@ -25,7 +25,7 @@ opt_params:
   weight_decay: 1e-5
   amsgrad: true
 
-workers: 8
+workers: 0
 
 train_list: all.txt
 valid_list: valid.txt
