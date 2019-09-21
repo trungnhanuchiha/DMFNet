@@ -60,7 +60,7 @@ def savepkl(data,path):
 
 def process_f32(path, has_label=True):
     """ Set all Voxels that are outside of the brain mask to 0"""
-    label = np.array(nib_load(path + 'seg.nii.gz'), dtype='uint8', order='C')
+    label = np.array(nib_load(path + 'truth.nii.gz'), dtype='uint8', order='C')
     images = np.stack([
         np.array(nib_load(path + modal + '.nii.gz'), dtype='float32', order='C')
         for modal in modalities], -1)
@@ -94,7 +94,9 @@ def doit(dset):
     file_list = os.path.join(root, dset['flist'])
     subjects = open(file_list).read().splitlines()
     names = [sub.split('/')[-1] for sub in subjects]
-    paths = [os.path.join(root, sub, name + '_') for sub, name in zip(subjects, names)]
+    # Sua lai de su dung cho dataset sau khi xu ly bang N4 (ten file da khac !)
+    # paths = [os.path.join(root, sub, name + '_') for sub, name in zip(subjects, names)]
+    paths = [os.path.join(root, sub, '') for sub in subjects]
     for path in paths:
         process_f32(path, has_label)
 
