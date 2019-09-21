@@ -33,10 +33,10 @@ class BraTSDataset(Dataset):
         path = self.paths[index]
 
         x, y = pkload(path + 'data_f32.pkl')
-        # print(x.shape, y.shape)#(240, 240, 155, 4) (240, 240, 155)
+        print(x.shape, y.shape)#(240, 240, 155, 4) (240, 240, 155)
         # transforms work with nhwtc
         x, y = x[None, ...], y[None, ...]
-        # print(x.shape, y.shape)#(1, 240, 240, 155, 4) (1, 240, 240, 155)
+        print(x.shape, y.shape)#(1, 240, 240, 155, 4) (1, 240, 240, 155)
         done = False
         if self.return_target:
             while not done:
