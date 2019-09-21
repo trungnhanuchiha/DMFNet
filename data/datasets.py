@@ -40,9 +40,9 @@ class BraTSDataset(Dataset):
         done = False
         if self.return_target:
             while not done:
-                # print(x.shape, y.shape)#(1, 240, 240, 155, 4) (1, 240, 240, 155)
+                print(x.shape, y.shape)#(1, 240, 240, 155, 4) (1, 240, 240, 155)
                 a, b = self.transforms([x, y])
-                # print(a.shape,b.shape)#(1, 128, 128, 128, 4) (1, 128, 128, 128)
+                print(a.shape,b.shape)#(1, 128, 128, 128, 4) (1, 128, 128, 128)
                 if b.sum() > 0:
                     done = True
                     x, y = a, b
