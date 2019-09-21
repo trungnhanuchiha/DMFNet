@@ -20,7 +20,8 @@ class BraTSDataset(Dataset):
                 line = line.strip()
                 name = line.split('/')[-1]
                 names.append(name)
-                path = os.path.join(root, line , name + '_')
+                # path = os.path.join(root, line , name + '_')
+                path = os.path.join(root, line, '')
                 paths.append(path)
 
         self.names = names
