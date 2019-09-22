@@ -11,7 +11,7 @@ data_file: brats_data_isensee_2018_pieces.h5
 train_idx_file: isensee_training_ids_pieces.pkl
 val_idx_file: isensee_validation_ids_pieces.pkl
 
-criterion: GeneralizedDiceLoss
+criterion: softmax_dice_loss
 
 weight_type: square
 eps: 1e-5
