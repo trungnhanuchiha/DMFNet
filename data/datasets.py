@@ -76,15 +76,8 @@ class BraTSDataset_h5file(Dataset):
         truth = self.data_file_opened.root.truth[index, 0]
         data, truth = data[None, ...], truth[None, ...]
 
-        print(data.shape)
-
-        x = np.ascontiguousarray(data.transpose(0, 4, 1, 2, 3))# [Bsize,channels,Height,Width,Depth]
-        y = np.ascontiguousarray(truth)
-
-        print(x.shape)
-
-        x = torch.from_numpy(x)
-        y = torch.from_numpy(y)
+        x = torch.from_numpy(data)
+        y = torch.from_numpy(truth)
         return x, y
 
     def __len__(self):
