@@ -79,7 +79,8 @@ def main():
     Dataset = getattr(datasets, args.dataset) #
 
     train_list = os.path.join(args.train_data_dir, args.train_list)
-    train_set = Dataset(train_list, root=args.train_data_dir, for_train=True,transforms=args.train_transforms)
+    #train_set = Dataset(train_list, root=args.train_data_dir, for_train=True,transforms=args.train_transforms)
+    train_set = Dataset(args.train_data_dir, args.train_idx_file, args.val_idx_file)
 
     num_iters = args.num_iters or (len(train_set) * args.num_epochs) // args.batch_size
     num_iters -= args.start_iter

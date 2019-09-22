@@ -10,6 +10,7 @@ from .transforms import NumpyType
 from .data_utils import pkload
 
 import numpy as np
+import tables
 
 
 class BraTSDataset(Dataset):
@@ -64,3 +65,21 @@ class BraTSDataset(Dataset):
     def collate(self, batch):
         return [torch.cat(v) for v in zip(*batch)]
 
+class BraTSDataset_h5file(Dataset):
+    def __init__(self, root, data_file, train_idx_file, val_idx_file):
+        self.data_file_opened = tables.open_file(os.path.join(root, data_file), "r")
+        self.train_idxs = pkload(os.path.join(root, train_idx_file))
+        self.val_idxs = pkload(os.path.join(root, val_idx_file))
+
+    def __getitem__(self, index):
+        data = self.data_file_opened.root.data[index]
+        truth = self.data_file_opened.root.truth[index, 0]
+        x = torch.from_numpy(data)
+        y = torch.from_numpy(truth)
+        return x, y
+
+    def __len__(self):
+        return len(self.data_file_opened.root.data)
+
+    def collate(self, batch):
+        return [torch.cat(v) for v in zip(*batch)]

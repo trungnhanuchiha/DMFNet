@@ -1,4 +1,4 @@
-train_data_dir: ./data2/BRATS2018_preprocessed_main/Train
+train_data_dir: ./data3
 valid_data_dir: ./data2/BraTS2018/Valid
 test_data_dir: ./data2/BraTS2018/Test
 ckpt_dir: ./ckpts
